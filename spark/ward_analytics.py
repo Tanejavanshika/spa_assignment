@@ -97,7 +97,7 @@ def main():
         parquet_payload = batch_df \
             .withColumn("date", col("window_start").cast("date"))
             
-        output_path = "/Users/kanak/.gemini/antigravity/scratch/urbanpulse/data/ward_energy_summary/"
+        output_path = "/app/data/ward_energy_summary/"
         
         parquet_payload.write \
             .mode("append") \
@@ -110,8 +110,9 @@ def main():
     # 5. Start the streaming query
     query = flattened_df.writeStream \
         .foreachBatch(write_to_dual_sinks) \
-        .option("checkpointLocation", "/Users/kanak/.gemini/antigravity/scratch/urbanpulse/checkpoints/ward_energy/") \
+        .option("checkpointLocation", "/app/checkpoints/ward_energy/") \
         .start()
+
         
     print("Spark Structured Streaming query started. Writing to dual sinks... Press Ctrl+C to terminate.")
     query.awaitTermination()

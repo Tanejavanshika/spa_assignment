@@ -116,9 +116,10 @@ def main():
         .format("kafka") \
         .option("kafka.bootstrap.servers", bootstrap_servers) \
         .option("topic", "urbanpulse.health_advisories") \
-        .option("checkpointLocation", "/Users/kanak/.gemini/antigravity/scratch/urbanpulse/checkpoints/health_advisories/") \
+        .option("checkpointLocation", "/app/checkpoints/health_advisories/") \
         .outputMode("update") \
         .start()
+
         
     print("Spark Streaming SQL advisory job started. Writing unhealthy warnings to Kafka in Update mode...")
     query.awaitTermination()
