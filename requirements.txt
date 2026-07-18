@@ -1,0 +1,2 @@
+# Host-side Python dependencies for UrbanPulse producers, consumers, and verification scripts
+confluent-kafka>=2.2.0
