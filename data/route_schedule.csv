@@ -1,0 +1,9 @@
+route_id,route_name,terminal,scheduled_arrival_time
+R101,Route 101 - Colaba to Central Depot,Central Depot,14:15
+R102,Route 102 - Bandra to Andheri East,Andheri East,14:30
+R103,Route 103 - Dadar to Borivali Terminal,Borivali Terminal,14:45
+R104,Route 104 - Thane to Kurla Station,Kurla Station,15:00
+R105,Route 105 - Vashi to Chembur Crossing,Chembur Crossing,15:15
+R106,Route 106 - Goregaon to Malad West,Malad West,15:30
+R107,Route 107 - Byculla to CST Terminus,CST Terminus,15:45
+R108,Route 108 - Worli to Marine Drive,Marine Drive,16:00

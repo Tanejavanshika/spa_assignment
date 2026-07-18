@@ -1,0 +1,46 @@
+FROM python:3.10-slim
+
+# Install OpenJDK, build tools, and curl
+RUN apt-get update && apt-get install -y \
+    default-jdk \
+    build-essential \
+    python3-dev \
+    curl \
+    procps \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set JAVA_HOME (required by pemja dependency of apache-flink during pip install)
+ENV JAVA_HOME=/usr/lib/jvm/default-java
+ENV PATH=$JAVA_HOME/bin:$PATH
+
+WORKDIR /app
+
+# Set up PySpark and PyFlink dependencies
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir \
+    confluent-kafka==2.3.0 \
+    pyspark==3.5.0 \
+    apache-flink==1.18.0
+
+# Pre-download Flink Kafka SQL Connector Jar
+RUN mkdir -p /opt/flink/lib && \
+    curl -sS -o /opt/flink/lib/flink-sql-connector-kafka-3.0.1-1.18.jar \
+    https://repo1.maven.org/maven2/org/apache/flink/flink-sql-connector-kafka/3.0.1-1.18/flink-sql-connector-kafka-3.0.1-1.18.jar
+
+# Pre-download Spark Kafka dependency Jars
+RUN mkdir -p /opt/spark/jars && \
+    curl -sS -o /opt/spark/jars/spark-sql-kafka-0-10_2.12-3.5.0.jar \
+    https://repo1.maven.org/maven2/org/apache/spark/spark-sql-kafka-0-10_2.12/3.5.0/spark-sql-kafka-0-10_2.12-3.5.0.jar && \
+    curl -sS -o /opt/spark/jars/kafka-clients-3.5.0.jar \
+    https://repo1.maven.org/maven2/org/apache/kafka/kafka-clients/3.5.0/kafka-clients-3.5.0.jar && \
+    curl -sS -o /opt/spark/jars/commons-pool2-2.11.1.jar \
+    https://repo1.maven.org/maven2/org/apache/commons/commons-pool2/2.11.1/commons-pool2-2.11.1.jar && \
+    curl -sS -o /opt/spark/jars/spark-token-provider-kafka-0-10_2.12-3.5.0.jar \
+    https://repo1.maven.org/maven2/org/apache/spark/spark-token-provider-kafka-0-10_2.12/3.5.0/spark-token-provider-kafka-0-10_2.12-3.5.0.jar
+
+# Add environmental paths
+ENV FLINK_LIB_DIR=/opt/flink/lib
+ENV SPARK_JARS_DIR=/opt/spark/jars
+
+# Command defaults to bash
+CMD ["bash"]
