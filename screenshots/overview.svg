@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700">
+  <rect width="100%" height="100%" fill="#f8fafc" />
+  <text x="50%" y="30%" text-anchor="middle" font-size="34" font-family="Arial" fill="#0f172a">UrbanPulse Stream Platform</text>
+  <text x="50%" y="45%" text-anchor="middle" font-size="20" font-family="Arial" fill="#334155">Kafka • Flink • Spark • DLQ • Parquet</text>
+  <rect x="120" y="360" width="200" height="80" rx="8" fill="#2563eb" />
+  <text x="220" y="405" text-anchor="middle" fill="white" font-size="20">Producers</text>
+  <rect x="360" y="360" width="200" height="80" rx="8" fill="#7c3aed" />
+  <text x="460" y="405" text-anchor="middle" fill="white" font-size="20">Kafka</text>
+  <rect x="600" y="360" width="200" height="80" rx="8" fill="#16a34a" />
+  <text x="700" y="405" text-anchor="middle" fill="white" font-size="20">Flink/Spark</text>
+  <rect x="840" y="360" width="200" height="80" rx="8" fill="#dc2626" />
+  <text x="940" y="405" text-anchor="middle" fill="white" font-size="20">Reports</text>
+</svg>

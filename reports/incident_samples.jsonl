@@ -1,0 +1,5 @@
+{"alert_type": "TRAFFIC_GRIDLOCK", "severity": "CRITICAL", "timestamp": 1785172265704, "location": "Junction JNC-101 (Zone-E)", "message": "Junction JNC-101 has exceeded 180 seconds average wait for 3 consecutive cycles."}
+{"alert_type": "TRAFFIC_GRIDLOCK", "severity": "CRITICAL", "timestamp": 1785172266445, "location": "Junction JNC-107 (Zone-A)", "message": "Junction JNC-107 has exceeded 180 seconds average wait for 3 consecutive cycles."}
+{"alert_type": "TRAFFIC_GRIDLOCK", "severity": "CRITICAL", "timestamp": 1785172268260, "location": "Junction JNC-105 (Zone-D)", "message": "Junction JNC-105 has exceeded 180 seconds average wait for 3 consecutive cycles."}
+{"alert_type": "TRAFFIC_GRIDLOCK", "severity": "CRITICAL", "timestamp": 1785172269642, "location": "Junction JNC-106 (Zone-C)", "message": "Junction JNC-106 has exceeded 180 seconds average wait for 3 consecutive cycles."}
+{"alert_type": "TRAFFIC_GRIDLOCK", "severity": "CRITICAL", "timestamp": 1785172271582, "location": "Junction JNC-110 (Zone-D)", "message": "Junction JNC-110 has exceeded 180 seconds average wait for 3 consecutive cycles."}
