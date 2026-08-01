@@ -92,6 +92,9 @@ services:
       KAFKA_BOOTSTRAP_SERVERS: 'kafka1:9092,kafka2:9092,kafka3:9092'
     volumes:
       - ../:/app
+    tty: true
+    stdin_open: true
+
 
 
 volumes:

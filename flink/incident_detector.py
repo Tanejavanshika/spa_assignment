@@ -12,11 +12,30 @@ from typing import Any, Iterator
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from pyflink.common import Duration, SimpleStringSchema, Types, WatermarkStrategy
-from pyflink.datastream import StreamExecutionEnvironment
-from pyflink.datastream.connectors.kafka import KafkaRecordSerializationSchema, KafkaSink, KafkaSource
-from pyflink.datastream.functions import KeyedProcessFunction
-from pyflink.datastream.state import MapStateDescriptor, ValueStateDescriptor
+try:
+    from pyflink.common import Duration, SimpleStringSchema, Types, WatermarkStrategy
+    from pyflink.datastream import StreamExecutionEnvironment
+    from pyflink.datastream.connectors.kafka import KafkaRecordSerializationSchema, KafkaSink, KafkaSource
+    from pyflink.datastream.functions import KeyedProcessFunction
+    from pyflink.datastream.state import MapStateDescriptor, ValueStateDescriptor
+except ImportError:
+    import subprocess
+    import sys
+    import os
+    print("Warning: 'pyflink' module not found on host. Transparently delegating execution to Docker container 'streaming-runner'...\n", file=sys.stderr)
+    root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    docker_dir = os.path.join(root_dir, "docker")
+    cmd = ["docker", "compose", "exec"]
+    if not sys.stdin.isatty():
+        cmd.append("-T")
+    cmd += ["streaming-runner", "python3", "flink/incident_detector.py"] + sys.argv[1:]
+    try:
+        res = subprocess.run(cmd, cwd=docker_dir)
+        sys.exit(res.returncode)
+    except Exception as e:
+        print(f"Error: Failed to delegate to Docker: {e}", file=sys.stderr)
+        print("Please ensure Docker is running and run: cd docker && docker compose up -d --force-recreate streaming-runner", file=sys.stderr)
+        sys.exit(1)
 
 from config.constants import (
     AIR_QUALITY_TOPIC,

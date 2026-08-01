@@ -53,7 +53,7 @@ def main() -> None:
     """Run the GPS enrichment stream-table join."""
     route_ktable = load_route_schedule(ROUTE_SCHEDULE_CSV)
     consumer = build_consumer(ENRICHMENT_GROUP_ID)
-    producer = build_producer("gps-enrichment-producer", batch_size=65536, linger_ms=10)
+    producer = build_producer("gps-enrichment-producer", **{"batch.size": 65536, "linger.ms": 10})
 
     consumer.subscribe([BUS_GPS_TOPIC])
     logger.info(
