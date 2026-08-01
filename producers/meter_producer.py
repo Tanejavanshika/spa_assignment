@@ -21,7 +21,7 @@ logger = setup_logging("urbanpulse.meter_producer")
 
 def main() -> None:
     """Publish simulated smart meter events to Kafka."""
-    producer = create_producer("meter-producer", batch_size=65536, linger_ms=10)
+    producer = create_producer("meter-producer", **{"batch.size": 65536, "linger.ms": 10})
     wards = [f"Ward-{i}" for i in range(1, 7)]
     meters = [
         {
