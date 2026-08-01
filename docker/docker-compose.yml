@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   kafka1:
     image: confluentinc/cp-kafka:7.6.0
@@ -94,6 +92,9 @@ services:
       KAFKA_BOOTSTRAP_SERVERS: 'kafka1:9092,kafka2:9092,kafka3:9092'
     volumes:
       - ../:/app
+    tty: true
+    stdin_open: true
+
 
 
 volumes:

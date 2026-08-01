@@ -1,0 +1,27 @@
+"""UrbanPulse shared configuration package."""
+
+from config.constants import (
+    ALL_TOPICS,
+    BUS_GPS_ENRICHED_TOPIC,
+    BUS_GPS_TOPIC,
+    DLQ_TOPIC,
+    HEALTH_ADVISORIES_TOPIC,
+    INCIDENTS_TOPIC,
+    PROJECT_ROOT,
+    SMART_METERS_TOPIC,
+    TRAFFIC_SIGNALS_TOPIC,
+    WARD_ENERGY_SUMMARY_TOPIC,
+)
+
+__all__ = [
+    "ALL_TOPICS",
+    "BUS_GPS_ENRICHED_TOPIC",
+    "BUS_GPS_TOPIC",
+    "DLQ_TOPIC",
+    "HEALTH_ADVISORIES_TOPIC",
+    "INCIDENTS_TOPIC",
+    "PROJECT_ROOT",
+    "SMART_METERS_TOPIC",
+    "TRAFFIC_SIGNALS_TOPIC",
+    "WARD_ENERGY_SUMMARY_TOPIC",
+]
