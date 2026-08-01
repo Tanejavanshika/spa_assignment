@@ -40,9 +40,11 @@ METER_SCHEMA = StructType(
 
 def build_spark_session() -> SparkSession:
     """Create a Spark session configured for Kafka streaming."""
-    kafka_package = "org.apache.spark:spark-sql-kafka-0-10_2.13:4.0.0"
-    if Version(pyspark.__version__) < Version("4.0.0"):
-        kafka_package = "org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0"
+    spark_version = pyspark.__version__
+    if Version(spark_version) < Version("4.0.0"):
+        kafka_package = f"org.apache.spark:spark-sql-kafka-0-10_2.12:{spark_version}"
+    else:
+        kafka_package = f"org.apache.spark:spark-sql-kafka-0-10_2.13:{spark_version}"
     spark = (
         SparkSession.builder.appName("UrbanPulse-Ward-Energy-Analytics")
         .config("spark.jars.packages", kafka_package)
